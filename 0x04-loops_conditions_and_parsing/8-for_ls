@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# displays ls in list format
+ls="$(ls -1)"
+for i in $ls; do
+  echo "$i" | cut -d "-" -f 2
+done
