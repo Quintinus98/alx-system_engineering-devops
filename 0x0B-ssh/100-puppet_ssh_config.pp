@@ -3,8 +3,8 @@ file { '~/.ssh/config':
   ensure  => file,
   content => "
               HOST *
-              PasswordAuthentication no
-              IdentityFile ~/.ssh/school
+                PasswordAuthentication no
+                IdentityFile ~/.ssh/school
             ",
   mode    => '0600',
 }
