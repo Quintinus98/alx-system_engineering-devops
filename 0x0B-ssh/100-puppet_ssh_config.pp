@@ -1,10 +1,9 @@
 # using Puppet to make changes to our configuration file
-file { '~/.ssh/config':
+file { ' /etc/ssh/ssh_config':
   ensure  => file,
   content => "
               HOST *
                 PasswordAuthentication no
-                IdentityFile ~/.ssh/school
+                IdentityFile  ~/.ssh/school
             ",
-  mode    => '0600',
 }
