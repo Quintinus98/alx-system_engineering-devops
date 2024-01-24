@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
-#  Install nginx on your web-01
+# Install nginx on your web-01
 
 apt-get -y update
 apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
-sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
 service nginx start
+ufw allow 'Nginx HTTP'
+chown -R "$USER":"$USER" /var/www/html
+chmod -R 755 /var/www
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+sed -i '/listen 80 default_server/ a\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+service nginx restart
