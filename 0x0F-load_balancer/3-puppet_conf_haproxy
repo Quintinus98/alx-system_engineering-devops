@@ -1,0 +1,36 @@
+# Time to practice configuring your server with Puppet! Just as you
+# did before, we’d like you to install and configure an Nginx server
+# using Puppet instead of Bash.
+
+exec {'update':
+  command  => '/usr/bin/apt-get update',
+  provider => 'shell',
+}
+
+package {'haproxy':
+  ensure  => 'installed',
+  require => Exec['update'],
+}
+
+$line_string = "frontend http
+        bind *:80
+        mode http
+        default_backend myservers
+backend myservers
+        balance roundrobin
+        server 97830-web-01 54.236.47.245:80 check
+        server 97830-web-02 100.26.156.253:80 check
+"
+
+file {'/etc/haproxy/haproxy.cfg':
+  ensure  => present,
+}
+-> file_line { 'Append a line to /etc/haproxy/haproxy.cfg':
+  path => '/etc/haproxy/haproxy.cfg',
+  line => $line_string,
+}
+
+service {'haproxy':
+  ensure  => running,
+  require => Package['haproxy'],
+}
