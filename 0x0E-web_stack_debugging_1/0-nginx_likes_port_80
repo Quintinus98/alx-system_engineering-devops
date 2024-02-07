@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Nginx likes port 80
+# Update the symbolic link from sites-available/default to sites-enabled
+cd /etc/nginx/sites-enabled/
+rm default
+ln -s /etc/nginx/sites-available/default default
+service nginx restart
