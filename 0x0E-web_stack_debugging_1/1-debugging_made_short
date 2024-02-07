@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Nginx port 80 - Update symbolic link sites-available/default to sites-enabled
-rm /etc/nginx/sites-enabled/default | exit
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-service nginx stop
+sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
+sudo service nginx restart
+kill -9 "$(cat /var/run/nginx.pid)"
