@@ -2,4 +2,4 @@
 # Nginx port 80 - Update symbolic link sites-available/default to sites-enabled
 rm /etc/nginx/sites-enabled/default | exit
 ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-# service nginx restart
+service nginx stop
