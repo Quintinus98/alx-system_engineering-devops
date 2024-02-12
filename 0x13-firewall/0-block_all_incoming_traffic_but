@@ -1,0 +1,4 @@
+ufw allow 22 comment 'allow ssh'
+ufw allow 80 comment 'allow http'
+ufw allow 443 comment 'allow https'
+ufw enable
