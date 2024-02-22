@@ -8,7 +8,7 @@ import sys
 def export_to_csv():
     """Gather data from an api"""
     if len(sys.argv) <= 1:
-        print("Usage: python3 0-gather_data_from_an_API.py <int>")
+        print("Usage: python3 1-export_to_CSV.py <int>")
         exit(1)
 
     emp_id = int(sys.argv[1])
