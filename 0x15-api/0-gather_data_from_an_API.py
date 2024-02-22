@@ -11,10 +11,9 @@ def gather_data():
         exit(1)
 
     emp_id = int(sys.argv[1])
-    todos = requests.get(f'https://jsonplaceholder.typicode.com/todos\
-                         ?userId={emp_id}')
-    emp = requests.get(f'https://jsonplaceholder.typicode.com/users/\
-                       {emp_id}')
+    url = "https://jsonplaceholder.typicode.com/"
+    todos = requests.get(f"{url}todos?userId={emp_id}")
+    emp = requests.get(f"{url}users/{emp_id}")
     name = emp.json().get('name')
     todo_count = 0
     todo_completed = []
@@ -22,8 +21,8 @@ def gather_data():
         if todo.get('completed') is True:
             todo_count += 1
             todo_completed.append(todo.get('title'))
-    print(f'Employee {name} is done with tasks({todo_count}/\
-          {len(todos.json())}):')
+    print("Employee {} is done with tasks({}/{}):".format(
+        name, todo_count, len(todos.json())))
     for tasks in todo_completed:
         print(f"\t {tasks}")
 
