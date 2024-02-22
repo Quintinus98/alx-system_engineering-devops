@@ -8,10 +8,9 @@ def export_all_to_json():
     """Gather data from an api"""
     url = "https://jsonplaceholder.typicode.com/"
     users = requests.get(f"{url}users/").json()
-
     records = {}
-    user_data = []
     for user in users:
+        user_data = []
         user_id = user.get('id')
         user_name = user.get('username')
         todos = requests.get(f"{url}todos?userId={user_id}").json()
