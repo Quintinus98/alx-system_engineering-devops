@@ -1,16 +1,20 @@
 #!/usr/bin/python3
-"""Top ten"""
+"""Top ten function"""
 import requests
 
 
 def top_ten(subreddit):
-    """Get the top ten hottest post"""
+    """Top ten function"""
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    headers = {'User-Agent': '0x16-api_advanced'}
-    response = requests.get(url, headers=headers, allow_redirects=False)
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    params = {'limit': 10}
+    response = requests.get(url, headers=headers, params=params,
+                            allow_redirects=False)
+
     if response.status_code == 200:
-        data = response.json()
-        for post in data['data']['children'][:10]:
+        data = response.json().get('data')
+
+        for post in data.get('children'):
             print(post['data']['title'])
     else:
         print(None)
