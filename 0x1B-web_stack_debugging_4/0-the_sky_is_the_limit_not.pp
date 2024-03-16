@@ -5,7 +5,7 @@ exec { 'update_ulimit_variable':
   command => 'sed -i s/"-n 15"/"-n 4096"/g /etc/default/nginx',
   path    => '/usr/local/bin/:/bin/'
 }
-service {'nginx':
-  ensure  => 'running',
-  restart => true,
+exec { 'nginx-restart':
+  command => 'nginx restart',
+  path    => '/etc/init.d/'
 }
